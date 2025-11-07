@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Básico -->
+  <meta name="description" content="Conoce la historia y esencia de La Casa del Kumis, una empresa 100% llanera con más de 70 años de tradición en productos artesanales." />
+  <meta name="keywords" content="quiénes somos, casa del kumis, kumis llanero, empresa familiar, historia kumis, tradición colombiana, Villavicencio" />
+  <meta name="author" content="La Casa del Kumis" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pagina-web-demo.onrender.com/quienes-somos.html" />
+
+  <!-- Open Graph (para compartir en Facebook, WhatsApp, etc.) -->
+  <meta property="og:title" content="¿Quiénes Somos? | La Casa del Kumis" />
+  <meta property="og:description" content="Somos una empresa 100% llanera con más de 70 años de tradición llevando productos artesanales a tu mesa." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pagina-web-demo.onrender.com/quienes-somos.html" />
+  <meta property="og:image" content="https://pagina-web-demo.onrender.com/images/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="¿Quiénes Somos? | Tradición y Pasión por el Kumis" />
+  <meta name="twitter:description" content="Conoce la historia de La Casa del Kumis, una empresa familiar llanera con más de 70 años de tradición." />
+  <meta name="twitter:image" content="https://pagina-web-demo.onrender.com/images/logo.png" />
+
+  <title>¿Quiénes Somos? | Tradición y Pasión por el Kumis | La Casa del Kumis</title>
+
+  <link rel="stylesheet" href="estilos/styles.css" />
+  <script defer src="scripts/script.js"></script>
+</head>
+
+<body>
+  <h1 class="sr-only">¿Quiénes Somos? | La Casa del Kumis</h1>
+
+  <header class="sticky-header">
+    <nav class="header-nav">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="La Casa del Kumis Logo" style="height: 80px;" />
+        </a>
+      <button class="menu-toggle" aria-label="Abrir menú">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+      <ul class="menu">
+        <li><a href="quienes-somos.html" class="active">¿Quiénes Somos?</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="sucursales.html">Sucursales</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+  <a href="index.html"><button>⬅ Volver</button></a>
+
+  <section class="quienes-somos">
+  <h2 class="titulo-central">Conoce Nuestra Esencia</h2>
+  <p class="descripcion">
+Somos una empresa <strong>100% llanera </strong>con más de 70 años de tradición y calidad, llevando lo mejor de nuestra región a tu mesa.  </p>
+  <div class="cards-info-carrusel">
+    <div class="card">
+      <h3> Misión</h3>
+      <p>Elaborar y comercializar productos tradicionales, deliciosos, nutritivos y de excelente calidad, que satisfagan los gustos y necesidades de nuestros clientes, aplicando Buenas Prácticas de Manufactura en cada proceso.</p>
+    </div>
+
+    <div class="card">
+      <h3> Visión</h3>
+      <p>Fortalecer nuestro liderazgo en el sector de alimentos y bebidas, ampliando nuestra presencia a nivel nacional y manteniendo altos estándares de calidad en producto y servicio.</p>
+    </div>
+
+    <div class="card">
+      <h3> Nuestros Principios</h3>
+      <ul>
+        <li>Nuestra Gente</li>
+        <li>Nuestros Productos</li>
+        <li>Los Clientes</li>
+        <li>Nuestro Deber</li>
+        <li>El Éxito de Nuestra Empresa</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3> Política de Calidad</h3>
+      <p>Nos comprometemos a producir y comercializar productos bajo altos estándares de calidad, aplicando Buenas Prácticas de Manufactura y el sistema HACCP. Garantizamos higiene, inocuidad y control en todas las etapas del proceso.</p>
+    </div>
+  </div>
+  <div class="carousel-indicators"></div> <!-- Indicadores de carrusel -->
+  <div class="quienes-img-container">
+    <img src="images/nosotros-kumis.jpg" alt="Equipo de La Casa del Kumis" class="quienes-img" />
+  </div>
+  <div class="quienes-cta">
+    <p>¿Quieres conocer más sobre nuestra historia y compromiso?</p>
+    <a href="docs\2.0 NOSOTROS.pdf" target="_blank" class="btn-pdf">Descargar presentación completa</a>
+</section>
+
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const carousel = document.querySelector('.cards-info-carrusel');
+  const indicatorsContainer = document.querySelector('.carousel-indicators');
+  const cards = document.querySelectorAll('.cards-info-carrusel .card');
+  
+  // Crear los indicadores
+  cards.forEach((_, index) => {
+    const indicator = document.createElement('span');
+    indicator.classList.add('indicator');
+    indicator.addEventListener('click', () => scrollToCard(index));
+    indicatorsContainer.appendChild(indicator);
+  });
+
+  const indicators = document.querySelectorAll('.carousel-indicators .indicator');
+
+  let currentIndex = 0; // índice actual
+
+  function scrollToCard(index) {
+    const targetCard = cards[index];
+    carousel.scroll({
+      left: targetCard.offsetLeft,
+      behavior: 'smooth'
+    });
+    updateIndicators(index);
+    currentIndex = index;
+  }
+
+  function updateIndicators(activeIndex) {
+    indicators.forEach((indicator, index) => {
+      if (index === activeIndex) {
+        indicator.classList.add('active');
+      } else {
+        indicator.classList.remove('active');
+      }
+    });
+  }
+
+  // Escuchar scroll manual
+  carousel.addEventListener('scroll', () => {
+    const activeIndex = Math.round(carousel.scrollLeft / (cards[0].offsetWidth + 15));
+    updateIndicators(activeIndex);
+    currentIndex = activeIndex;
+  });
+
+  // === Autoplay ===
+  setInterval(() => {
+    let nextIndex = currentIndex + 1;
+    if (nextIndex >= cards.length) {
+      nextIndex = 0; // volver al inicio
+    }
+    scrollToCard(nextIndex);
+  }, 2500); // cada 2.5 segundos (ajusta el tiempo)
+});
+ document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.menu');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+      console.log('clic');
+    });
+  } else {
+    console.log('no se encontró el botón o el menú');
+  }
+});
+</script>
+ <section class="contacto-ayuda">
+    <div class="container" style="display: flex; flex-wrap: wrap; gap: 2rem;">
+      <img src="images/logo.png" alt="Logo La Casa del Kumis" class="logo-contacto" />
+      <div style="flex: 1; min-width: 250px;">
+        <h3>Contáctanos</h3>
+        <p><strong>Dirección:</strong> CALLE 37 # 31A 10 Villavicencio</p>
+        <p><strong>Teléfonos:</strong> 6661352 - 3174075190</p>
+        <p><strong>Ciudad:</strong> Bogotá,Villavicencio y Bucaramanga</p>
+        <p><strong>Email:</strong> Casadelkumis1950@hotmail.com</p>
+      </div>
+      <div style="flex: 1; min-width: 250px;">
+        <h3>Ayuda</h3>
+        <a href="trabaja.html"><button>Trabaja con nosotros</button></a>
+        <a href="quejas.html"><button>Escribe tu queja o reclamo</button></a>
+        <h3>Síguenos</h3>
+        <div class="social">
+          <a href="https://www.facebook.com/share/16qBEZQYRq/?mibextid=wwXIfr" target="_blank"><img src="images/facebook.svg" alt="Facebook de La Casa del Kumis" /></a>
+          <a href="https://www.instagram.com/casadelkumis?igsh=YWVtN2hxbzhuOWww&utm_source=qr" target="_blank"><img src="images/instagram.svg" alt="Instagram de La Casa del Kumis" /></a>
+          <a href="https://linktr.ee/casadelkumis?utm_source=linktree_profile_share" target="_blank"><img src="images/linktree.webp" alt="TikTok de La Casa del Kumis" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="footer-elegante">
+   <p>
+    <a href="politica-datos.html" class="credit-link">Política de Tratamiento de Datos</a> |
+    <a href="terminos-condiciones.html" class="credit-link">Términos y Condiciones</a>
+  </p>
+  <p>&copy; 2025 <strong>Casa del Kumis</strong>. Todos los derechos reservados.</p>
+  <p>
+    Desarrollado con <span class="corazon">❤</span> por 
+    <a href="https://github.com/otpvayne" target="_blank" class="credit-link">Diego</a>.
+  </p>
+</footer>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "La Casa del Kumis",
+  "image": "https://pagina-web-demo.onrender.com/images/logo.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle 37 #31A-10",
+    "addressLocality": "Villavicencio",
+    "addressCountry": "CO"
+  },
+  "url": "https://pagina-web-demo.onrender.com",
+  "telephone": "+573174075190"
+}
+</script>
+<script src="/config.js"></script>
+<script src="/scripts/script.js"></script>
+</body>
+</html>

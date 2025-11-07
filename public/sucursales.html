@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Básico -->
+  <meta name="description" content="Encuentra la sucursal de La Casa del Kumis más cercana en Bogotá, Villavicencio o Bucaramanga. ¡Tradición, sabor y cercanía desde 1950!" />
+  <meta name="keywords" content="Casa del Kumis sucursales, kumis Villavicencio, kumis Bogotá, kumis Bucaramanga, puntos de venta kumis artesanal, kumis cerca de mí" />
+  <meta name="author" content="La Casa del Kumis" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pagina-web-demo.onrender.com/sucursales.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sucursales | Bogotá, Villavicencio y Bucaramanga | La Casa del Kumis" />
+  <meta property="og:description" content="Conoce nuestras sucursales y visita el punto de venta más cercano. Kumis artesanal con más de 70 años de tradición." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pagina-web-demo.onrender.com/sucursales.html" />
+  <meta property="og:image" content="https://pagina-web-demo.onrender.com/images/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sucursales | Bogotá, Villavicencio y Bucaramanga | La Casa del Kumis" />
+  <meta name="twitter:description" content="Ubica tu punto de venta más cercano y disfruta del mejor kumis artesanal en Colombia." />
+  <meta name="twitter:image" content="https://pagina-web-demo.onrender.com/images/logo.png" />
+
+  <title>Sucursales | Bogotá, Villavicencio y Bucaramanga | La Casa del Kumis</title>
+
+  <link rel="stylesheet" href="estilos/styles.css" />
+  <script defer src="scripts/script.js"></script>
+
+  <style>
+    :root {
+      --color-principal: #d51f27;
+      --color-secundario: #f0f0f0;
+      --color-texto: #333;
+      --fuente-principal: 'Montserrat', sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: var(--fuente-principal);
+      background-color: var(--color-secundario);
+      color: var(--color-texto);
+      line-height: 1.6;
+      padding-top: 120px;
+    }
+    .container {
+      max-width: 1200px; margin: auto; padding: 2rem;
+      background:#fff; border-radius:20px; box-shadow:0 8px 30px rgba(0,0,0,.05);
+    }
+
+    header.sticky-header { position:fixed; top:0; width:100%; z-index:999; background:var(--color-principal); box-shadow:0 2px 10px rgba(0,0,0,.1); }
+    .header-nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; }
+    .menu { list-style:none; gap:1.5rem; }
+    .menu li a { color:#fff; text-decoration:none; font-weight:600; }
+    .menu li a:hover, .menu li a.active { color:#000; }
+
+    h2.titulo-central { text-align:center; font-size:2rem; color:var(--color-principal); margin-bottom:1.5rem; }
+
+    .filtro-ciudad { display:flex; justify-content:center; flex-wrap:wrap; gap:1rem; margin-bottom:2rem; }
+    .filtro-btn {
+      background:#fff; color:var(--color-principal); border:2px solid var(--color-principal);
+      padding:.5rem 1.2rem; border-radius:12px; font-weight:600; cursor:pointer; transition:.2s;
+    }
+    .filtro-btn:hover, .filtro-btn.activo { background:var(--color-principal); color:#fff; }
+
+    .sucursales-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;
+    }
+    .sucursal-card {
+      background: rgba(255,255,255,.75); backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,.3); box-shadow:0 6px 20px rgba(0,0,0,.08);
+      border-radius:1rem; padding:1.5rem; transition:.3s;
+    }
+    .sucursal-card.ocultar { display:none; opacity:0; transform:scale(.95); pointer-events:none; }
+    .sucursal-card h3 { color:var(--color-principal); margin-bottom:1rem; text-align:center; }
+    .sucursal-card p { margin-bottom:.25rem; }
+
+    .estado-sucursal {
+      display:inline-flex; align-items:center; gap:.4rem; font-size:.75rem; font-weight:600;
+      padding:.2rem .6rem; border-radius:999px; margin-left:.5rem; color:#fff; background:#bbb;
+    }
+    .estado-sucursal::before { content:''; width:8px; height:8px; border-radius:50%; background:#fff; }
+    .estado-sucursal.abierto { background:#4caf50; }
+    .estado-sucursal.cerrado { background:#f44336; }
+
+    .sucursal-media { display:block; margin-top:1rem; border-radius:16px; overflow:hidden; }
+    .sucursal-media img {
+      width:100%; height:auto; max-height:70vh; object-fit:contain; object-position:center;
+      display:block; background:#fff; transition: transform .25s ease, filter .25s ease;
+    }
+    .sucursal-media:hover img { transform:scale(1.02); filter:saturate(1.05); }
+
+    /* Carrusel móvil */
+    @media (max-width:768px){
+      .sucursales-grid {
+        display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:1rem; padding-bottom:1rem;
+        -webkit-overflow-scrolling:touch;
+      }
+      .sucursales-grid::-webkit-scrollbar{ display:none; }
+      .sucursal-card{ min-width:85%; flex:0 0 auto; scroll-snap-align:start; }
+      .sucursal-media img { max-height:40vh; object-fit:cover; }
+    }
+
+    .paginacion{
+      display:flex; justify-content:center; gap:.5rem; margin-top:1.5rem; flex-wrap:wrap;
+    }
+    .paginacion button{
+      background:var(--color-principal); border:none; padding:.4rem .8rem; border-radius:8px;
+      font-weight:bold; color:#fff; cursor:pointer;
+    }
+    .paginacion button.activo{ filter:brightness(.9); }
+    @media (max-width:768px){ .paginacion{ display:none; } }
+
+    button { cursor:pointer; }
+  </style>
+</head>
+<body>
+  <h1 class="sr-only">Nuestras Sucursales</h1>
+
+  <header class="sticky-header">
+    <nav class="header-nav">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="La Casa del Kumis Logo" style="height: 80px;" />
+      </a>
+      <button class="menu-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="menu">
+        <li><a href="quienes-somos.html">¿Quiénes Somos?</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="sucursales.html">Sucursales</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <a href="index.html"><button>⬅ Volver</button></a>
+
+    <section class="sucursales-section">
+      <h2 class="titulo-central">Nuestras Sucursales</h2>
+
+      <div class="filtro-ciudad">
+        <button data-ciudad="todas" class="filtro-btn activo">Todas</button>
+        <button data-ciudad="bogota" class="filtro-btn">Bogotá</button>
+        <button data-ciudad="villavicencio" class="filtro-btn">Villavicencio</button>
+        <button data-ciudad="bucaramanga" class="filtro-btn">Bucaramanga</button>
+      </div>
+
+      <div class="sucursales-grid">
+        <!-- Villavicencio -->
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>CASA DEL KUMIS PRINCIPAL <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> Calle 37 N 31 A 10 - Centro</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-principal">
+            <img src="images/sucursales/villavicencio-principal.webp" alt="Fachada Casa del Kumis Principal - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>CASA DEL KUMIS DE LA 38 <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> Calle 38 N 30 - 36 - Centro</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-38">
+            <img src="images/sucursales/villavicencio-38.jpg" alt="Casa del Kumis de la 38 - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>CASA DEL KUMIS CENTAUROS <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> Calle 38 N 32-47 - Centro</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-centauros">
+            <img src="images/sucursales/villavicencio-centauros.jpg" alt="Casa del Kumis Centauros - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>CASA DEL KUMIS BARZAL <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> Calle 35 N 36-25 - Barzal</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-barzal">
+            <img src="images/sucursales/villavicencio-barzal.jpg" alt="Casa del Kumis Barzal - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>CASA DEL KUMIS UNICENTRO <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> Centro Comercial Unicentro LOCAL 235</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-unicentro">
+            <img src="images/sucursales/villavicencio-unicentro.jpg" alt="Casa del Kumis Unicentro - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>CASA DEL KUMIS PRIMAVERA <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> Calle 15 N 40-101 - Villa María</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-primavera">
+            <img src="images/sucursales/villavicencio-primavera.jpg" alt="Casa del Kumis Primavera - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>CASA DEL KUMIS HOMECENTER <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> Cra 48 N 1-180 KM 2 - Vía Acacías</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-homecenter">
+            <img src="images/sucursales/villavicencio-homecenter.jpg" alt="Casa del Kumis Homecenter - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>CASA DEL KUMIS - HOSPITAL <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> Calle 44B N 33B-127 - Local 3</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-hospital">
+            <img src="images/sucursales/villavicencio-hospital.jpg" alt="Casa del Kumis Hospital - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>CASA DEL KUMIS UNICO <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> K 22 8-21 - Local 8 CC Único</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-unico">
+            <img src="images/sucursales/villavicencio-unico.jpg" alt="Casa del Kumis Único - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>CASA DEL KUMIS VIVA <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> Calle 40 N 30-26 Piso 1 Local 1042</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-viva">
+            <img src="images/sucursales/villavicencio-viva.jpg" alt="Casa del Kumis Viva - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>CASA DEL KUMIS MAKRO <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> Cra 22 N 7-37 - Vía Pto López</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-makro">
+            <img src="images/sucursales/villavicencio-makro.jpg" alt="Casa del Kumis Makro - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>CASA DEL KUMIS MAKRO (Balatá) <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> Av 40 N 16B-159 - Balatá</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-makro-balata">
+            <img src="images/sucursales/villavicencio-makro-balata.jpg" alt="Casa del Kumis Makro Balatá - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>CASA DEL KUMIS PLAZOLETA <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> Av 40 N 26C-10 - CC Unicentro</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-plazoleta">
+            <img src="images/sucursales/villavicencio-plazoleta.jpg" alt="Casa del Kumis Plazoleta - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>Local Barzal 2 <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> Cra 38 N 33B-27 - Barzal Alto</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-barzal2">
+            <img src="images/sucursales/villavicencio-barzal2.jpg" alt="Casa del Kumis Barzal 2 - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="villavicencio">
+          <h3>Kumis Móvil <span class="estado-sucursal" data-ciudad="villavicencio"></span></h3>
+          <p><strong>Dirección:</strong> Parque Los Fundadores</p>
+          <p><strong>Ciudad:</strong> Villavicencio</p>
+          <a class="sucursal-media" href="sucursal.html?slug=villavicencio-kumis-movil">
+            <img src="images/sucursales/villavicencio-kumis-movil.jpg" alt="Kumis Móvil - Villavicencio" loading="lazy"/>
+          </a>
+        </div>
+
+        <!-- Bogotá -->
+        <div class="sucursal-card" data-ciudad="bogota">
+          <h3>CASA DEL KUMIS LA CASTELLANA <span class="estado-sucursal" data-ciudad="bogota"></span></h3>
+          <p><strong>Dirección:</strong> Calle 95 N 45A-30 - La Castellana</p>
+          <p><strong>Ciudad:</strong> Bogotá</p>
+          <a class="sucursal-media" href="sucursal.html?slug=bogota-castellana">
+            <img src="images/sucursales/bogota-castellana.jpg" alt="Casa del Kumis La Castellana - Bogotá" loading="lazy"/>
+          </a>
+        </div>
+
+        <div class="sucursal-card" data-ciudad="bogota">
+          <h3>CASA DEL KUMIS NUESTRO BOGOTÁ <span class="estado-sucursal" data-ciudad="bogota"></span></h3>
+          <p><strong>Dirección:</strong> CC Nuestro Bogotá Local B1-131-133</p>
+          <p><strong>Ciudad:</strong> Bogotá</p>
+          <a class="sucursal-media" href="sucursal.html?slug=bogota-nuestro-bogota">
+            <img src="images/sucursales/bogota-nuestro-bogota.jpg" alt="Casa del Kumis Nuestro Bogotá" loading="lazy"/>
+          </a>
+        </div>
+
+        <!-- Bucaramanga -->
+        <div class="sucursal-card" data-ciudad="bucaramanga">
+          <h3>CASA DEL KUMIS ÚNICO BUCARAMANGA <span class="estado-sucursal" data-ciudad="bucaramanga"></span></h3>
+          <p><strong>Dirección:</strong> CC Único Bucaramanga Local 142</p>
+          <p><strong>Ciudad:</strong> Bucaramanga</p>
+          <a class="sucursal-media" href="sucursal.html?slug=bucaramanga-unico">
+            <img src="images/sucursales/bucaramanga-unico.jpg" alt="Casa del Kumis Único - Bucaramanga" loading="lazy"/>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="paginacion"></div>
+  </main>
+
+  <section class="contacto-ayuda">
+    <div class="container" style="display:flex; flex-wrap:wrap; gap:2rem;">
+      <img src="images/logo.png" alt="Logo La Casa del Kumis" class="logo-contacto" />
+      <div style="flex:1; min-width:250px;">
+        <h3>Contáctanos</h3>
+        <p><strong>Dirección:</strong> CALLE 37 # 31A 10 Villavicencio</p>
+        <p><strong>Teléfonos:</strong> 6661352 - 3174075190</p>
+        <p><strong>Ciudad:</strong> Bogotá, Villavicencio y Bucaramanga</p>
+        <p><strong>Email:</strong> Casadelkumis1950@hotmail.com</p>
+      </div>
+      <div style="flex:1; min-width:250px;">
+        <h3>Ayuda</h3>
+        <a href="trabaja.html"><button>Trabaja con nosotros</button></a>
+        <a href="quejas.html"><button>Escribe tu queja o reclamo</button></a>
+        <h3>Síguenos</h3>
+        <div class="social">
+          <a href="https://www.facebook.com/share/16qBEZQYRq/?mibextid=wwXIfr" target="_blank"><img src="images/facebook.svg" alt="Facebook de La Casa del Kumis" /></a>
+          <a href="https://www.instagram.com/casadelkumis?igsh=YWVtN2hxbzhuOWww&utm_source=qr" target="_blank"><img src="images/instagram.svg" alt="Instagram de La Casa del Kumis" /></a>
+          <a href="https://linktr.ee/casadelkumis?utm_source=linktree_profile_share" target="_blank"><img src="images/linktree.webp" alt="Linktree Casa del Kumis" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-elegante">
+    <p>
+      <a href="politica-datos.html" class="credit-link">Política de Tratamiento de Datos</a> |
+      <a href="terminos-condiciones.html" class="credit-link">Términos y Condiciones</a>
+    </p>
+    <p>&copy; 2025 <strong>Casa del Kumis</strong>. Todos los derechos reservados.</p>
+    <p>
+      Desarrollado con <span class="corazon">❤</span> por 
+      <a href="https://github.com/otpvayne" target="_blank" class="credit-link">Diego</a>.
+    </p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.menu');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+      console.log('clic');
+    });
+  } else {
+    console.log('no se encontró el botón o el menú');
+  }
+});
+    // === Estado Abierto/Cerrado (por ciudad) ===
+    document.addEventListener("DOMContentLoaded", () => {
+      const ahora = new Date();
+      const dia = ahora.getDay(); // 0=Dom ... 6=Sáb
+      const horaActual = ahora.getHours() + ahora.getMinutes()/60;
+
+      const horarios = {
+        bogota:        { 1:[8,19], 2:[8,18], 3:[8,18], 4:[8,18], 5:[8,18], 6:[8,14] },
+        villavicencio: { 0:[9,17], 1:[9,17], 2:[9,17], 3:[9,17], 4:[9,17], 5:[9,17], 6:[9,14] },
+        bucaramanga:   { 1:[8,18], 2:[8,18], 3:[8,18], 4:[8,18], 5:[8,18], 6:[8,14] }
+      };
+
+      document.querySelectorAll('.estado-sucursal').forEach(el => {
+        const ciudadId = el.dataset.ciudad;
+        const horarioCiudad = horarios[ciudadId];
+        if (!horarioCiudad) return;
+        const horario = horarioCiudad[dia];
+        if (!horario) { el.textContent="Cerrado"; el.classList.add("cerrado"); return; }
+        const [ini, fin] = horario;
+        const abierto = (horaActual >= ini && horaActual < fin);
+        el.textContent = abierto ? "Abierto" : "Cerrado";
+        el.classList.add(abierto ? "abierto" : "cerrado");
+      });
+    });
+
+    // === Filtro por ciudad (reordena y oculta) ===
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('.filtro-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+          btn.classList.add('activo');
+
+          const ciudadSeleccionada = btn.dataset.ciudad;
+          const grid = document.querySelector('.sucursales-grid');
+          const cards = Array.from(document.querySelectorAll('.sucursal-card'));
+
+          if (ciudadSeleccionada === 'todas') {
+            cards.forEach(card => { card.classList.remove('ocultar'); grid.appendChild(card); });
+            return;
+          }
+
+          const sel = cards.filter(c => c.dataset.ciudad === ciudadSeleccionada);
+          const resto = cards.filter(c => c.dataset.ciudad !== ciudadSeleccionada);
+
+          grid.innerHTML = '';
+          sel.forEach(c => { c.classList.remove('ocultar'); grid.appendChild(c); });
+          resto.forEach(c => { c.classList.add('ocultar'); grid.appendChild(c); });
+        });
+      });
+    });
+
+    
+    // === Paginación en desktop ===
+    document.addEventListener("DOMContentLoaded", () => {
+      const CARDS_POR_PAGINA = 6;
+      const contenedorPaginacion = document.querySelector(".paginacion");
+      const anchoPantalla = window.innerWidth;
+
+      function mostrarPagina(filtro, pagina) {
+        const cards = document.querySelectorAll('.sucursal-card');
+        const list = (filtro==="todas")
+          ? Array.from(cards)
+          : Array.from(cards).filter(c => c.dataset.ciudad === filtro);
+
+        const total = Math.ceil(list.length / CARDS_POR_PAGINA);
+        document.querySelectorAll('.sucursal-card').forEach(c => c.classList.add('ocultar'));
+
+        const inicio = (pagina-1)*CARDS_POR_PAGINA;
+        const fin = inicio + CARDS_POR_PAGINA;
+        list.slice(inicio, fin).forEach(c => c.classList.remove('ocultar'));
+
+        contenedorPaginacion.innerHTML = "";
+        if (total > 1 && anchoPantalla > 768) {
+          for (let i=1;i<=total;i++){
+            const b = document.createElement("button");
+            b.textContent = i; if (i===pagina) b.classList.add("activo");
+            b.addEventListener("click", () => mostrarPagina(filtro, i));
+            contenedorPaginacion.appendChild(b);
+          }
+        }
+      }
+
+      const activa = document.querySelector(".filtro-btn.activo");
+      if (activa && anchoPantalla > 768) mostrarPagina(activa.dataset.ciudad, 1);
+
+      document.querySelectorAll('.filtro-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (anchoPantalla > 768) mostrarPagina(btn.dataset.ciudad, 1);
+          else contenedorPaginacion.innerHTML = "";
+        });
+      });
+    });
+    
+  </script>
+<script>
+(function(){
+  const MQ_MOBILE = window.matchMedia('(max-width: 768px)');
+  const GRID = document.querySelector('.sucursales-grid');
+  const PAG = document.querySelector('.paginacion');
+  const BTN_FILTROS = Array.from(document.querySelectorAll('.filtro-btn'));
+  const CARDS_POR_PAGINA = 6;
+
+  // --- Estado global ---
+  let filtroActual = (document.querySelector('.filtro-btn.activo')?.dataset.ciudad) || 'todas';
+  let autoplayTimer = null;
+  let resumeTimer = null;
+  let indexAutoplay = 0;
+
+  // ====== Helpers ======
+  const getCards = () => Array.from(GRID.querySelectorAll('.sucursal-card'));
+  const cardsVisibles = () => getCards().filter(c => !c.classList.contains('ocultar'));
+  const isMobile = () => MQ_MOBILE.matches;
+
+  // Smooth scroll to card i visible
+  function scrollToVisibleCard(i){
+    const visibles = cardsVisibles();
+    if (!visibles.length) return;
+    const card = visibles[i % visibles.length];
+    GRID.scrollTo({ left: card.offsetLeft - GRID.offsetLeft, behavior: 'smooth' });
+  }
+
+  // ====== AUTOPLAY MÓVIL ======
+  function startAutoplay(){
+    stopAutoplay();
+    if (!isMobile()) return;               // solo móvil
+    const visibles = cardsVisibles();
+    if (visibles.length <= 1) return;      // sin autoplay si hay 0/1 cards
+
+    // Ajustar índice al card más cercano al scroll actual
+    indexAutoplay = Math.max(0, Math.min(visibles.length-1,
+      visibles.findIndex(c => c.offsetLeft >= GRID.scrollLeft - 1)));
+
+    autoplayTimer = setInterval(() => {
+      indexAutoplay = (indexAutoplay + 1) % visibles.length;
+      scrollToVisibleCard(indexAutoplay);
+    }, 4000);
+  }
+
+  function stopAutoplay(){
+    clearInterval(autoplayTimer); autoplayTimer = null;
+    clearTimeout(resumeTimer); resumeTimer = null;
+  }
+
+  function pauseAndResumeAutoplay(){
+    stopAutoplay();
+    resumeTimer = setTimeout(startAutoplay, 6000);
+  }
+
+  // Pausas por interacción de usuario
+  ['touchstart','mousedown','mouseenter','wheel','keydown'].forEach(evt => {
+    GRID.addEventListener(evt, pauseAndResumeAutoplay, {passive:true});
+  });
+
+  GRID.addEventListener('scroll', () => {
+    if (!isMobile()) return;
+    // Actualiza índice según el scroll actual (aproximado)
+    const visibles = cardsVisibles();
+    if (!visibles.length) return;
+    const cardW = visibles[0].getBoundingClientRect().width;
+    indexAutoplay = Math.round(GRID.scrollLeft / (cardW + 16)); // 16 ~ gap aprox
+  }, {passive:true});
+
+  // ====== PAGINACIÓN DESKTOP ======
+  function construirPaginacion(ciudad){
+    if (isMobile()) { PAG.innerHTML = ''; return; }
+
+    const cards = getCards();
+    const list = (ciudad === 'todas') ? cards : cards.filter(c => c.dataset.ciudad === ciudad);
+    const totalPag = Math.ceil(list.length / CARDS_POR_PAGINA);
+
+    // Mostrar/ocultar por página 1
+    mostrarPagina(ciudad, 1);
+
+    PAG.innerHTML = '';
+    if (totalPag <= 1) return;
+
+    for (let i=1; i<=totalPag; i++){
+      const b = document.createElement('button');
+      b.textContent = i;
+      if (i === 1) b.classList.add('activo');
+      b.addEventListener('click', () => {
+        PAG.querySelectorAll('button').forEach(x => x.classList.remove('activo'));
+        b.classList.add('activo');
+        mostrarPagina(ciudad, i);
+      });
+      PAG.appendChild(b);
+    }
+  }
+
+  function mostrarPagina(ciudad, pagina){
+    const cards = getCards();
+    const list = (ciudad === 'todas') ? cards : cards.filter(c => c.dataset.ciudad === ciudad);
+
+    // Oculta todas
+    cards.forEach(c => c.classList.add('ocultar'));
+
+    // Muestra el rango
+    const ini = (pagina - 1) * CARDS_POR_PAGINA;
+    const fin = ini + CARDS_POR_PAGINA;
+    list.slice(ini, fin).forEach(c => c.classList.remove('ocultar'));
+  }
+
+  // ====== FILTRO DE CIUDAD (reordenar + paginar/autoplay) ======
+  BTN_FILTROS.forEach(btn => {
+    btn.addEventListener('click', () => {
+      BTN_FILTROS.forEach(b => b.classList.remove('activo'));
+      btn.classList.add('activo');
+      filtroActual = btn.dataset.ciudad;
+
+      const cards = getCards();
+      const sel = (filtroActual === 'todas') ? cards : cards.filter(c => c.dataset.ciudad === filtroActual);
+      const resto = cards.filter(c => !sel.includes(c));
+
+      // Reordenar en el DOM (seleccionadas arriba)
+      GRID.innerHTML = '';
+      sel.forEach(c => { c.classList.remove('ocultar'); GRID.appendChild(c); });
+      resto.forEach(c => { c.classList.add('ocultar'); GRID.appendChild(c); });
+
+      // Desktop: paginar; Móvil: mostrar todas visibles y autoplay
+      if (isMobile()){
+        // En móvil no usamos paginación (fluye como carrusel)
+        PAG.innerHTML = '';
+        // Asegura que todas las de la ciudad estén visibles
+        sel.forEach(c => c.classList.remove('ocultar'));
+        // Reinicia autoplay
+        startAutoplay();
+        // Lleva al inicio
+        GRID.scrollTo({left:0, behavior:'instant'});
+      } else {
+        construirPaginacion(filtroActual);
+        stopAutoplay();
+      }
+    });
+  });
+
+  // ====== Resize / cambio de breakpoint ======
+  MQ_MOBILE.addEventListener('change', () => {
+    if (isMobile()){
+      // Quita paginación y muestra todas las visibles de la ciudad actual
+      PAG.innerHTML = '';
+      getCards().forEach(c => {
+        if (filtroActual === 'todas' || c.dataset.ciudad === filtroActual) c.classList.remove('ocultar');
+      });
+      startAutoplay();
+    } else {
+      stopAutoplay();
+      construirPaginacion(filtroActual);
+      // Asegura que el scroll vuelva al inicio
+      GRID.scrollTo({left:0, behavior:'instant'});
+    }
+  });
+
+  // ====== INIT ======
+  (function init(){
+    if (isMobile()){
+      PAG.innerHTML = '';
+      startAutoplay();
+    } else {
+      construirPaginacion(filtroActual);
+      stopAutoplay();
+    }
+  })();
+
+})();
+</script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"La Casa del Kumis",
+    "image":"https://pagina-web-demo.onrender.com/images/logo.png",
+    "address":{"@type":"PostalAddress","streetAddress":"Calle 37 #31A-10","addressLocality":"Villavicencio","addressCountry":"CO"},
+    "url":"https://pagina-web-demo.onrender.com",
+    "telephone":"+573174075190"
+  }
+  </script>
+  <script src="/config.js"></script>
+<script src="/scripts/script.js"></script>
+</body>
+</html>
