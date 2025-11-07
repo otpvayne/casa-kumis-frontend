@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Básico -->
+  <meta name="description" content="Envía tu queja, petición, reclamo o felicitación a La Casa del Kumis. Tu opinión es valiosa para mejorar nuestros productos y atención al cliente." />
+  <meta name="keywords" content="quejas casa del kumis, reclamos kumis, peticiones kumis, sugerencias, servicio al cliente kumis" />
+  <meta name="author" content="La Casa del Kumis" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pagina-web-demo.onrender.com/quejas.html" />
+
+  <!-- Open Graph (Facebook, WhatsApp, LinkedIn...) -->
+  <meta property="og:title" content="Quejas y Sugerencias | La Casa del Kumis" />
+  <meta property="og:description" content="Envía tu queja, felicitación o sugerencia. En La Casa del Kumis nos importa tu experiencia y estamos para escucharte." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pagina-web-demo.onrender.com/quejas.html" />
+  <meta property="og:image" content="https://pagina-web-demo.onrender.com/images/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Quejas y Sugerencias | La Casa del Kumis" />
+  <meta name="twitter:description" content="Tu opinión es importante. Ayúdanos a mejorar enviando tu mensaje." />
+  <meta name="twitter:image" content="https://pagina-web-demo.onrender.com/images/logo.png" />
+
+  <title>Quejas, Reclamos y Peticiones | La Casa del Kumis</title>
+
+  <link rel="stylesheet" href="estilos/styles.css" />
+  <script defer src="scripts/script.js"></script>
+</head>
+
+<style>
+  /* === FORMULARIO DE CONTACTO/QUEJAS === */
+form {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  max-width: 700px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+form h1,
+form h2 {
+  text-align: center;
+  color: #333;
+}
+
+form input,
+form select,
+form textarea {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 1rem;
+  width: 100%;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--color-principal, #d51f27);
+  box-shadow: 0 0 0 3px rgba(246, 183, 60, 0.3);
+  background-color: #fff;
+}
+
+form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+form label {
+  font-weight: bold;
+  color: #555;
+}
+
+form button {
+  background-color: var(--color-principal, #d51f27);
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background-color: var(--color-principal);;
+  transform: scale(1.03);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  form {
+    padding: 1.5rem;
+  }
+
+  form button {
+    font-size: 0.95rem;
+  }
+}
+/* Sección de título */
+.titulo-seccion {
+  font-size: 2.3rem;
+  text-align: center;
+  color: var(--color-principal, #d51f27);
+  margin-bottom: 0.5rem;
+}
+
+.descripcion-seccion {
+  text-align: center;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Ajuste visual de sección quejas */
+.seccion-quejas {
+  margin-top: 2rem;
+  padding-bottom: 3rem;
+}
+  </style>
+<body>
+  <h1 class="sr-only">Quejas y Sugerencias | La Casa del Kumis</h1>
+
+  <header class="sticky-header">
+    <nav class="header-nav">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="La Casa del Kumis Logo" style="height: 80px;" />
+        </a>
+      <button class="menu-toggle" aria-label="Abrir menú">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+      <ul class="menu">
+        <li><a href="quienes-somos.html">¿Quiénes Somos?</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="sucursales.html">Sucursales</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+  <a href="index.html"><button>⬅ Volver</button></a>
+
+  <section class="seccion-quejas">
+    <h2 class="titulo-seccion">Quejas, Peticiones o Felicitaciones</h2>
+    <p class="descripcion-seccion">
+      Tu opinión es muy importante para nosotros. Diligencia el siguiente formulario y te responderemos lo más pronto posible.
+    </p>
+
+    <form id="form-queja" enctype="multipart/form-data">
+      <input name="nombre" placeholder="Nombre y Apellidos" required />
+      <input type="email" name="email" placeholder="Correo Electrónico" required />
+      <input name="telefono" placeholder="Teléfono Móvil" required />
+
+      <select name="sucursal" required>
+  <option value="">Seleccione una sucursal</option>
+
+  <optgroup label="Bogotá">
+    <option value="CASA DEL KUMIS LA CASTELLANA">CASA DEL KUMIS LA CASTELLANA</option>
+    <option value="CASA DEL KUMIS NUESTRO BOGOTÁ">CASA DEL KUMIS NUESTRO BOGOTÁ</option>
+  </optgroup>
+
+  <optgroup label="Villavicencio">
+    <option value="CASA DEL KUMIS PRINCIPAL">CASA DEL KUMIS PRINCIPAL</option>
+    <option value="CASA DEL KUMIS DE LA 38">CASA DEL KUMIS DE LA 38</option>
+    <option value="CASA DEL KUMIS CENTAUROS">CASA DEL KUMIS CENTAUROS</option>
+    <option value="CASA DEL KUMIS BARZAL">CASA DEL KUMIS BARZAL</option>
+    <option value="CASA DEL KUMIS UNICENTRO">CASA DEL KUMIS UNICENTRO</option>
+    <option value="CASA DEL KUMIS PRIMAVERA">CASA DEL KUMIS PRIMAVERA</option>
+    <option value="CASA DEL KUMIS HOMECENTER">CASA DEL KUMIS HOMECENTER</option>
+    <option value="CASA DEL KUMIS - HOSPITAL">CASA DEL KUMIS - HOSPITAL</option>
+    <option value="CASA DEL KUMIS UNICO">CASA DEL KUMIS UNICO</option>
+    <option value="CASA DEL KUMIS VIVA">CASA DEL KUMIS VIVA</option>
+    <option value="CASA DEL KUMIS MAKRO">CASA DEL KUMIS MAKRO</option>
+    <option value="CASA DEL KUMIS MAKRO">CASA DEL KUMIS MAKRO</option>
+    <option value="CASA DEL KUMIS PLAZOLETA">CASA DEL KUMIS PLAZOLETA</option>
+    <option value="Local Barzal 2">Local Barzal 2</option>
+    <option value="Kumis Móvil">Kumis Móvil</option>
+  </optgroup>
+
+  <optgroup label="Bucaramanga">
+    <option value="CASA DEL KUMIS ÚNICO BUCARAMANGA">CASA DEL KUMIS ÚNICO BUCARAMANGA</option>
+  </optgroup>
+</select>
+
+
+      <select name="asunto" required>
+        <option value="">Seleccione el asunto</option>
+        <option value="Queja">Queja</option>
+        <option value="Petición">Petición</option>
+        <option value="Reclamo">Reclamo</option>
+        <option value="Felicitación">Felicitación</option>
+      </select>
+
+      <textarea name="mensaje" placeholder="Escribe tu mensaje..." required></textarea>
+
+      <label style="font-weight: 500;">Adjuntar archivo (opcional):</label>
+      <input type="file" name="archivo" />
+      <label class="aceptacion-politicas">
+  <input type="checkbox" id="acepto" required />
+  Acepto la <a href="politica-datos.html" target="_blank">Política de Tratamiento de Datos</a> y los 
+  <a href="terminos-condiciones.html" target="_blank">Términos y Condiciones</a>.
+</label>
+
+      <button type="submit">Enviar</button>
+      <p id="estado-queja" style="text-align: center; margin-top: 1rem; font-weight: bold; color: #444;"></p>
+    </form>
+  </section>
+</main>
+
+<script>
+document.getElementById('form-queja').addEventListener('submit', async e => {
+  e.preventDefault();
+  const estado = document.getElementById('estado-queja');
+  estado.textContent = 'Enviando...';
+
+  const formData = new FormData(e.target);
+  try {
+    const res = await fetch('/api/quejas', {
+      method: 'POST',
+      body: formData
+    });
+    const msg = await res.text();
+    if (res.ok) {
+      alert('✅ Tu mensaje fue enviado con éxito');
+      estado.textContent = '';
+      e.target.reset();
+    } else {
+      alert('❌ ' + msg);
+      estado.textContent = msg;
+    }
+  } catch (err) {
+    alert('❌ Error de conexión');
+    console.error(err);
+    estado.textContent = 'Error al enviar.';
+  }
+});
+const menu = document.querySelector('.menu');
+  const toggle = document.querySelector('.menu-toggle');
+
+  if (menu && toggle) {
+    toggle.addEventListener('click', () => {
+      console.log('Botón hamburguesa clickeado');
+      menu.classList.toggle('active');
+    });
+  } else {
+    console.warn('No se encontró .menu o .menu-toggle');
+  }
+
+</script>
+
+  <section class="contacto-ayuda">
+    <div class="container" style="display: flex; flex-wrap: wrap; gap: 2rem;">
+      <img src="images/logo.png" alt="Logo La Casa del Kumis" class="logo-contacto" />
+      <div style="flex: 1; min-width: 250px;">
+        <h3>Contáctanos</h3>
+        <p><strong>Dirección:</strong> CALLE 37 # 31A 10 Villavicencio</p>
+        <p><strong>Teléfonos:</strong> 6661352 - 3174075190</p>
+        <p><strong>Ciudad:</strong> Bogotá,Villavicencio y Bucaramanga</p>
+        <p><strong>Email:</strong> Casadelkumis1950@hotmail.com</p>
+      </div>
+      <div style="flex: 1; min-width: 250px;">
+        <h3>Ayuda</h3>
+        <a href="trabaja.html"><button>Trabaja con nosotros</button></a>
+        <a href="quejas.html"><button>Escribe tu queja o reclamo</button></a>
+        <h3>Síguenos</h3>
+        <div class="social">
+          <a href="https://www.facebook.com/share/16qBEZQYRq/?mibextid=wwXIfr" target="_blank"><img src="images/facebook.svg" alt="Facebook de La Casa del Kumis" /></a>
+          <a href="https://www.instagram.com/casadelkumis?igsh=YWVtN2hxbzhuOWww&utm_source=qr" target="_blank"><img src="images/instagram.svg" alt="Instagram de La Casa del Kumis" /></a>
+          <a href="https://linktr.ee/casadelkumis?utm_source=linktree_profile_share" target="_blank"><img src="images/linktree.webp" alt="TikTok de La Casa del Kumis" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="footer-elegante">
+   <p>
+    <a href="politica-datos.html" class="credit-link">Política de Tratamiento de Datos</a> |
+    <a href="terminos-condiciones.html" class="credit-link">Términos y Condiciones</a>
+  </p>
+  <p>&copy; 2025 <strong>Casa del Kumis</strong>. Todos los derechos reservados.</p>
+  <p>
+    Desarrollado con <span class="corazon">❤</span> por 
+    <a href="https://github.com/otpvayne" target="_blank" class="credit-link">Diego</a>.
+  </p>
+</footer>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "La Casa del Kumis",
+  "image": "https://pagina-web-demo.onrender.com/images/logo.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle 37 #31A-10",
+    "addressLocality": "Villavicencio",
+    "addressCountry": "CO"
+  },
+  "url": "https://pagina-web-demo.onrender.com",
+  "telephone": "+573174075190"
+}
+</script>
+<script src="/config.js"></script>
+<script src="/scripts/script.js"></script>
+</body>
+</html>
