@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Básico -->
+  <meta name="description" content="Descubre todos los sabores de kumis artesanal de La Casa del Kumis. Natural, fresco y delicioso: mora, fresa, guayaba, durazno y más." />
+  <meta name="keywords" content="productos kumis, kumis artesanal, kumis natural, kumis mora, kumis fresa, casa del kumis, kumis Colombia" />
+  <meta name="author" content="La Casa del Kumis" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pagina-web-demo.onrender.com/productos.html" />
+
+  <!-- Open Graph (Facebook, WhatsApp, LinkedIn...) -->
+  <meta property="og:title" content="Nuestros Productos de Kumis Artesanal | La Casa del Kumis" />
+  <meta property="og:description" content="Explora los sabores de nuestro kumis artesanal: mora, fresa, guayaba, durazno y más. Tradición colombiana desde 1950." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pagina-web-demo.onrender.com/productos.html" />
+  <meta property="og:image" content="https://pagina-web-demo.onrender.com/images/kumis-fresa.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kumis Artesanal | Todos los Sabores | La Casa del Kumis" />
+  <meta name="twitter:description" content="Conoce la variedad de kumis natural colombiano. Kumis con fresa, mora, guayaba, durazno y más." />
+  <meta name="twitter:image" content="https://pagina-web-demo.onrender.com/images/kumis-fresa.jpg" />
+
+  <title>Productos de Kumis Artesanal | La Casa del Kumis</title>
+
+  <link rel="stylesheet" href="estilos/styles.css" />
+</head>
+
+<script src="/config.js"></script>
+<script src="/scripts/script.js"></script>
+<body>
+  <h1 class="sr-only">Productos de Kumis Artesanal | La Casa del Kumis</h1>
+
+  <header class="sticky-header">
+    <nav class="header-nav">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Logo de La Casa del Kumis" style="height: 80px;" />
+      </a>
+      <button class="menu-toggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="menu">
+        <li><a href="quienes-somos.html">¿Quiénes Somos?</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="sucursales.html">Sucursales</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main class="container">
+    <a href="index.html"><button>⬅ Volver</button></a>
+
+    <section class="productos-section">
+      <h2 class="titulo-productos">Sabores de Kumis Artesanal</h2>
+
+      <!-- Controles -->
+      <div class="filtros">
+        <button class="filtro-btn activo" data-filtro="todos">Todos</button>
+        <button class="filtro-btn" data-filtro="favorito">Favoritos</button>
+        <button class="filtro-btn" data-filtro="mas-vendido">Más vendidos</button>
+        <select id="ordenar" class="ordenar-select">
+          <option value="">Ordenar por...</option>
+          <option value="nombre-asc">Nombre A-Z</option>
+          <option value="nombre-desc">Nombre Z-A</option>
+        </select>
+      </div>
+
+      <!-- Productos -->
+      <div id="productos-container" class="productos-grid"></div>
+
+      <!-- Paginación -->
+      <div class="paginacion" id="paginacion"></div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.menu');
+
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          menu.classList.toggle('active');
+          console.log('clic');
+        });
+      } else {
+        console.log('no se encontró el botón o el menú');
+      }
+    });
+  </script>
+
+  <section class="contacto-ayuda">
+    <div class="container" style="display: flex; flex-wrap: wrap; gap: 2rem;">
+      <img src="images/logo.png" alt="Logo La Casa del Kumis" class="logo-contacto" />
+      <div style="flex: 1; min-width: 250px;">
+        <h3>Contáctanos</h3>
+        <p><strong>Dirección:</strong> CALLE 37 # 31A 10 Villavicencio</p>
+        <p><strong>Teléfonos:</strong> 6661352 - 3174075190</p>
+        <p><strong>Ciudad:</strong> Bogotá, Villavicencio y Bucaramanga</p>
+        <p><strong>Email:</strong> Casadelkumis1950@hotmail.com</p>
+      </div>
+      <div style="flex: 1; min-width: 250px;">
+        <h3>Ayuda</h3>
+        <a href="trabaja.html"><button>Trabaja con nosotros</button></a>
+        <a href="quejas.html"><button>Escribe tu queja o reclamo</button></a>
+        <h3>Síguenos</h3>
+        <div class="social">
+          <a href="https://www.facebook.com/share/16qBEZQYRq/?mibextid=wwXIfr" target="_blank"><img src="images/facebook.svg" alt="Facebook de La Casa del Kumis" /></a>
+          <a href="https://www.instagram.com/casadelkumis?igsh=YWVtN2hxbzhuOWww&utm_source=qr" target="_blank"><img src="images/instagram.svg" alt="Instagram de La Casa del Kumis" /></a>
+          <a href="https://linktr.ee/casadelkumis?utm_source=linktree_profile_share" target="_blank"><img src="images/linktree.webp" alt="TikTok de La Casa del Kumis" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="footer-elegante">
+    <p>
+      <a href="politica-datos.html" class="credit-link">Política de Tratamiento de Datos</a> |
+      <a href="terminos-condiciones.html" class="credit-link">Términos y Condiciones</a>
+    </p>
+    <p>&copy; 2025 <strong>La Casa del Kumis</strong>. Todos los derechos reservados.</p>
+    <p>
+      Desarrollado con <span class="corazon">❤</span> por 
+      <a href="https://github.com/otpvayne" target="_blank" class="credit-link">Diego</a>.
+    </p>
+  </footer>
+
+  <script defer src="scripts/script.js"></script>
+    <!-- Añadir el Schema JSON-LD aquí -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "La Casa del Kumis",
+      "image": "https://pagina-web-demo.onrender.com/images/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Calle 37 #31A-10",
+        "addressLocality": "Villavicencio",
+        "addressCountry": "CO"
+      },
+      "url": "https://pagina-web-demo.onrender.com",
+      "telephone": "+573174075190"
+    }
+  </script>
+</body>
+</html>
