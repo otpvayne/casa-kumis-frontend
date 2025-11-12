@@ -11,7 +11,7 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://pagina-web-demo.onrender.com/trabaja.html" />
 
-  <!-- Open Graph para redes sociales -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Trabaja con nosotros | La Casa del Kumis" />
   <meta property="og:description" content="Envía tu hoja de vida y sé parte de nuestro equipo. Tenemos vacantes en Villavicencio, Bogotá y Bucaramanga." />
   <meta property="og:type" content="website" />
@@ -29,7 +29,6 @@
   <link rel="stylesheet" href="estilos/styles.css" />
 </head>
 
-
 <body>
   <h1 class="sr-only">Trabaja con nosotros</h1>
 
@@ -37,12 +36,10 @@
     <nav class="header-nav">
       <a href="index.html" class="logo">
         <img src="images/logo.png" alt="La Casa del Kumis Logo" style="height: 80px;" />
-        </a>
+      </a>
       <button class="menu-toggle" aria-label="Abrir menú">
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
+        <span></span><span></span><span></span>
+      </button>
       <ul class="menu">
         <li><a href="quienes-somos.html">¿Quiénes Somos?</a></li>
         <li><a href="productos.html">Productos</a></li>
@@ -52,79 +49,35 @@
   </header>
 
   <main class="container trabaja-seccion">
-  <a href="index.html"><button class="btn-volver">⬅ Volver</button></a>
+    <a href="index.html"><button class="btn-volver">⬅ Volver</button></a>
 
-  <h2 class="titulo-central">Trabaja con nosotros</h2>
-  <p class="descripcion">
-    Si compartes nuestra pasión por la calidad, el sabor y la tradición, este es tu lugar. Completa el formulario y haz parte de nuestra familia.
-  </p>
+    <h2 class="titulo-central">Trabaja con nosotros</h2>
+    <p class="descripcion">
+      Si compartes nuestra pasión por la calidad, el sabor y la tradición, este es tu lugar. Completa el formulario y haz parte de nuestra familia.
+    </p>
 
-  <form id="formulario" enctype="multipart/form-data" class="formulario-trabajo">
-    <div class="form-grid">
-      <input name="nombre" placeholder="Nombre completo" required />
-      <input name="email" placeholder="Correo electrónico" type="email" required />
-      <input name="telefono" placeholder="Número de teléfono" required />
-      <input name="cargo" placeholder="Cargo al que aspiras" required />
-      <textarea name="mensaje" placeholder="Cuéntanos brevemente sobre ti..."></textarea>
-      <label class="input-file">
-        Adjuntar hoja de vida
-        <input type="file" name="archivo" required />
+    <form id="formulario" enctype="multipart/form-data" class="formulario-trabajo">
+      <div class="form-grid">
+        <input name="nombre" placeholder="Nombre completo" required />
+        <input name="email" placeholder="Correo electrónico" type="email" required />
+        <input name="telefono" placeholder="Número de teléfono" required />
+        <input name="cargo" placeholder="Cargo al que aspiras" required />
+        <textarea name="mensaje" placeholder="Cuéntanos brevemente sobre ti..."></textarea>
+        <label class="input-file">
+          Adjuntar hoja de vida
+          <input type="file" name="archivo" required />
+        </label>
+      </div>
+
+      <label class="aceptacion-politicas">
+        <input type="checkbox" id="acepto" required />
+        Acepto la <a href="politica-datos.html" target="_blank">Política de Tratamiento de Datos</a> y los
+        <a href="terminos-condiciones.html" target="_blank">Términos y Condiciones</a>.
       </label>
-    </div>
-    <label class="aceptacion-politicas">
-  <input type="checkbox" id="acepto" required />
-  Acepto la <a href="politica-datos.html" target="_blank">Política de Tratamiento de Datos</a> y los 
-  <a href="terminos-condiciones.html" target="_blank">Términos y Condiciones</a>.
-</label>
 
-    <button type="submit" class="boton-enviar">Enviar postulación</button>
-    <p id="estado" class="estado-formulario"></p>
-  </form>
-</main>
-
-
-    <script>
-      document.getElementById('formulario').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const estado = document.getElementById('estado');
-        estado.textContent = 'Enviando...';
-
-        const formData = new FormData(e.target);
-        try {
-          const res = await fetch('/api/formulario', {
-            method: 'POST',
-            body: formData
-          });
-
-          const text = await res.text();
-          if (res.ok) {
-            alert('✅ Formulario enviado con éxito');
-            estado.textContent = '';
-            e.target.reset();
-          } else {
-            alert('❌ Error al enviar: ' + text);
-            estado.textContent = 'Error: ' + text;
-          }
-        } catch (err) {
-          console.error(err);
-          alert('❌ Error de conexión con el servidor.');
-          estado.textContent = 'Error al enviar';
-        }
-      });
-      document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.querySelector('.menu-toggle');
-  const menu = document.querySelector('.menu');
-
-  if (toggle && menu) {
-    toggle.addEventListener('click', () => {
-      menu.classList.toggle('active');
-      console.log('clic');
-    });
-  } else {
-    console.log('no se encontró el botón o el menú');
-  }
-});
-    </script>
+      <button type="submit" class="boton-enviar">Enviar postulación</button>
+      <p id="estado" class="estado-formulario"></p>
+    </form>
   </main>
 
   <section class="contacto-ayuda">
@@ -151,18 +104,66 @@
     </div>
   </section>
 
-<footer class="footer-elegante">
-   <p>
-    <a href="politica-datos.html" class="credit-link">Política de Tratamiento de Datos</a> |
-    <a href="terminos-condiciones.html" class="credit-link">Términos y Condiciones</a>
-  </p>
-  <p>&copy; 2025 <strong>Casa del Kumis</strong>. Todos los derechos reservados.</p>
-  <p>
-    Desarrollado con <span class="corazon">❤</span> por 
-    <a href="https://github.com/otpvayne" target="_blank" class="credit-link">Diego</a>.
-  </p>
-</footer>
-<script src="/config.js"></script>
-<script src="/scripts/script.js"></script>
+  <footer class="footer-elegante">
+    <p>
+      <a href="politica-datos.html" class="credit-link">Política de Tratamiento de Datos</a> |
+      <a href="terminos-condiciones.html" class="credit-link">Términos y Condiciones</a>
+    </p>
+    <p>&copy; 2025 <strong>Casa del Kumis</strong>. Todos los derechos reservados.</p>
+    <p>
+      Desarrollado con <span class="corazon">❤</span> por
+      <a href="https://github.com/otpvayne" target="_blank" class="credit-link">Diego</a>.
+    </p>
+  </footer>
+
+  <!-- Cargar primero la config del backend -->
+  <script src="config.js"></script>
+
+  <!-- Script de la página -->
+  <script>
+    // Base URL del backend (viene de config.js). Fallback por si falta el archivo.
+    const API_BASE = (window.ENV && window.ENV.API_BASE_URL) || "https://casa-kumis-backend.onrender.com";
+
+    // Menú responsive
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.menu');
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => menu.classList.toggle('active'));
+      }
+    });
+
+    // Envío de formulario
+    document.getElementById('formulario').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const estado = document.getElementById('estado');
+      estado.textContent = 'Enviando...';
+
+      const formData = new FormData(e.target);
+      try {
+        const res = await fetch(`${API_BASE}/api/formulario`, {
+          method: 'POST',
+          body: formData
+        });
+
+        const text = await res.text();
+        if (res.ok) {
+          alert('✅ Formulario enviado con éxito');
+          estado.textContent = '';
+          e.target.reset();
+        } else {
+          alert('❌ Error al enviar: ' + text);
+          estado.textContent = 'Error: ' + text;
+        }
+      } catch (err) {
+        console.error(err);
+        alert('❌ Error de conexión con el servidor.');
+        estado.textContent = 'Error al enviar';
+      }
+    });
+  </script>
+
+  <!-- (opcional) tu script global del sitio -->
+  <script src="scripts/script.js"></script>
 </body>
 </html>

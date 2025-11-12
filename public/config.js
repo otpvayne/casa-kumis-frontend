@@ -6,3 +6,6 @@ window.ENV = {
   // API_BASE_URL: "https://api.tudominio.com",
   API_BASE_URL: "/api" // Recomendado si vas a usar proxy /api → backend (evita CORS)
 };
+window.ENV = {
+  API_BASE_URL: "https://casa-kumis-backend.onrender.com"
+};
