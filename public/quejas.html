@@ -533,10 +533,11 @@ const menu = document.querySelector('.menu');
 
       try {
         const formData = new FormData(e.target);
-        const res = await fetch(`${API_BASE}/api/quejas`, {
-          method: 'POST',
-          body: formData
+        const res = await fetch(`${window.API_BASE}/api/quejas`, {
+        method: 'POST',
+        body: formData
         });
+
         const msg = await res.text();
 
         if (res.ok) {
