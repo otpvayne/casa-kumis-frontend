@@ -1,0 +1,1168 @@
+:root {
+  --color-principal: #d51f27;
+  --color-secundario: #f0f0f0;
+  --color-contacto: #f0f0f0;
+  --color-texto: #333;
+  --fuente-principal: 'Cooper BT Black', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  font-smoothing: antialiased;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  color: var(--color-texto);
+  background-color: var(--color-secundario);
+  line-height: 1.6;
+  padding-top: 100px;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  color: #222;
+  letter-spacing: 0.5px;
+  font-family: var(--fuente-principal);
+}
+
+
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-nav {
+  width: 100%;
+  padding: 6px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-principal);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+.logo img {
+  background-color: #fff;
+  padding: 10px 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  height: 96px !important; /* Aumento del 20% y forzado */
+  max-height: 96px !important;
+  width: auto;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.15); /* efecto translúcido */
+  backdrop-filter: blur(6px); /* efecto glass */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.menu li a:hover {
+  background-color: #ffffff;
+  color: var(--color-principal);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+}
+
+/* Carrusel grande */
+.carousel {
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
+  max-height: 600px;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.slides {
+  display: flex;
+  transition: transform 1s ease-in-out;
+}
+
+.slides img {
+  width: 100vw;
+  height: 60vh;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+}
+
+.indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: white;
+}
+
+/* Carrusel de productos */
+.product-carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 1rem;
+  background-color: white;
+}
+
+.product-carousel-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  gap: 1rem;
+}
+
+.product-slide {
+  flex: 0 0 220px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: white;
+  text-align: center;
+  transition: transform 0.3s;
+  height: 250px;
+}
+
+.product-slide:hover {
+  transform: scale(1.03);
+}
+
+.product-slide img {
+  width: 100%;
+  height: auto; /* Antes: height: 200px; */
+  object-fit: contain; /* Contenido visible sin recorte */
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.product-slide-title {
+  background: #c8102e;
+  color: white;
+  font-weight: bold;
+  padding: 0.7rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #c8102e;
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.carousel-btn:hover {
+  background-color: #a60d26;
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+.carousel-btn.next {
+  right: 10px;
+}
+
+/* Estilo elegante de botones */
+button,
+a button {
+  background: var(--color-principal);
+  color: #fff;
+  border: none;
+  padding: 0.9rem 1.8rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  font-family: var(--fuente-principal);
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-45deg);
+  transition: left 0.5s;
+  z-index: 0;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Inputs refinados */
+input,
+textarea {
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  padding: 1rem;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+  transition: all 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--color-principal);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(246,183,60,0.2);
+}
+
+/* Contacto */
+.contacto-ayuda {
+  background-color: var(--color-contacto);
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.contacto-ayuda .social {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.contacto-ayuda .social a img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+.logo-contacto {
+  max-width: 210px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+/* === NUEVO ESTILO: Sección ¿Quiénes Somos? mejorada === */
+.quienes-somos {
+  padding: 4rem 1rem;
+  background: linear-gradient(to bottom right, #f0f0f0, #ffffff);
+  position: relative;
+  overflow: hidden;
+}
+
+.quienes-somos::before,
+.quienes-somos::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+}
+
+.quienes-somos::before {
+  top: -100px;
+  left: -120px;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 204, 102, 0.3);
+}
+
+.quienes-somos::after {
+  bottom: -100px;
+  right: -120px;
+  width: 250px;
+  height: 250px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.titulo-central {
+  font-size: 3rem;
+  color: var(--color-principal);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.descripcion {
+  font-size: 1.2rem;
+  color: #555;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+}
+
+/* Contenedor de tarjetas tipo grid flexible */
+.cards-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+/* Cards horizontal en móviles */
+/* Carrusel Horizontal */
+.cards-info-carrusel {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  scroll-snap-type: x mandatory;
+  padding: 2rem 0;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth; /* Habilita el desplazamiento suave */
+}
+
+.cards-info-carrusel .card {
+  flex: 0 0 0%; /* Asegura que las tarjetas tengan un ancho automático */
+  min-width: 280px; /* Evita que las tarjetas sean demasiado pequeñas */
+  max-width: 340px; /* Controla el tamaño máximo de las tarjetas */
+  margin: auto;
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  padding: 2rem;
+  transition: transform 0.3s ease;
+  scroll-snap-align: start; /* Alineación del carrusel */
+  flex-shrink: 0; /* Impide que las tarjetas se encojan */
+  overflow: hidden; /* Evita el desbordamiento del contenido */
+}
+
+.cards-info-carrusel .card:hover {
+  transform: translateY(-5px);
+}
+
+.cards-info-carrusel .card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: center;
+  position: relative;
+}
+
+.cards-info-carrusel .card h3::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-principal);
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cards-info-carrusel .card ul {
+  padding-left: 1.2rem;
+  list-style: none;
+}
+
+.cards-info-carrusel .card li {
+  position: relative;
+  margin-bottom: 0.6rem;
+  padding-left: 1.2rem;
+}
+
+.cards-info-carrusel .card li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-principal);
+  font-weight: bold;
+}
+
+.cards-info-carrusel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Indicadores de Desplazamiento */
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px; /* Ubica los indicadores en la parte inferior */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-indicators .indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: background-color 0.3s;
+}
+
+.carousel-indicators .indicator.active {
+  background-color: var(--color-principal);
+}
+
+/* Escritorio: rejilla como antes */
+@media (min-width: 768px) {
+  .cards-info-carrusel {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .cards-info-carrusel .card {
+    flex: 0 0 calc(45% - 2rem); /* Mejora el tamaño para pantallas grandes */
+    max-width: 500px;
+  }
+}
+
+
+/* Tarjeta refinada */
+.card {
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  padding: 2.5rem;
+  max-width: 360px;
+  transition: all 0.4s ease;
+  border: 1px solid #eee;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* Encabezado con línea inferior */
+.card h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1.2rem;
+  position: relative;
+  text-align: center;
+}
+
+.card h3::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-principal);
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card p,
+.card ul {
+  color: #444;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+/* Lista con íconos destacados */
+.card ul {
+  padding-left: 0;
+}
+
+.card li {
+  list-style: none;
+  margin-bottom: 0.6rem;
+  position: relative;
+  padding-left: 1.6rem;
+}
+
+.card li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-principal);
+  font-weight: bold;
+}
+
+/* Botón Volver estilizado */
+.quienes-somos button {
+  margin-bottom: 2rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  background-color: var(--color-principal);
+  color: white;
+  border: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.quienes-somos button:hover {
+  background-color: var(--color-principal);
+}
+
+/* RESPONSIVE */
+  @media (max-width: 768px) {
+  /* Carrusel de productos */
+  .product-slide img {
+    height: auto !important; /* Evita recortes */
+    object-fit: contain !important;
+    padding: 8px;
+    background-color: white;
+  }
+
+  /* Grid de productos */
+  .producto-box img {
+    height: auto !important;
+    object-fit: contain !important;
+    padding: 8px;
+    display: block;
+    max-width: 100%;
+    background-color: white;
+  }
+
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    background: var(--color-principal);
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    width: 180px;
+    padding: 1rem;
+    border-radius: 12px;
+    z-index: 999;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .titulo-central {
+    font-size: 2.3rem;
+  }
+
+  .card {
+    padding: 2rem;
+    max-width: 100%;
+  }
+
+  .descripcion {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+.quienes-img-container {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.quienes-img {
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.quienes-img:hover {
+  transform: scale(1.02);
+}
+.quienes-cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.quienes-cta p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.btn-pdf {
+  display: inline-block;
+  background-color: var(--color-principal);
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.btn-pdf:hover {
+  background-color: var(--color-principal);
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .titulo-central {
+    font-size: 2rem;
+  }
+
+  .descripcion {
+    font-size: 1rem;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: var(--color-principal);
+    position: absolute;
+    top: 60px;
+    left: 0;
+    padding: 1rem;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .slides img {
+    height: 50vh;
+    object-fit: cover;
+    width: 100vw;
+  }
+
+  .product-slide {
+    flex: 0 0 160px;
+    height: 200px;
+  }
+
+  .product-slide-title {
+    font-size: 0.85rem;
+  }
+}
+
+/* === SECCIÓN: GRID DE PRODUCTOS === */
+/* Estructura de grilla responsiva para mostrar productos */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+/* Caja individual del producto */
+.producto-box {
+  background: rgba(255, 255, 255, 0.85); /* fondo blanco suave */
+  backdrop-filter: blur(6px); /* efecto glass suave */
+  border-radius: 1rem;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Efecto al pasar el mouse por la caja del producto */
+.producto-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Imagen del producto */
+.producto-box img {
+  width: 100%;
+  height: 220px; /* Puedes ajustar esto según tu diseño */
+  object-fit: contain;
+  background-color: white; /* Por si la imagen es más pequeña */
+  padding: 10px; /* Para que no toque los bordes si es muy ancha */
+  border-radius: 10px;
+}
+
+
+
+/* Efecto zoom suave sobre la imagen */
+.producto-box:hover img {
+  transform: scale(1.02);
+}
+
+/* Información textual del producto (nombre, descripción) */
+.info-producto {
+  padding: 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Título del producto */
+.info-producto h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #003366;
+  font-weight: 700;
+}
+
+/* Descripción breve del producto */
+.info-producto p {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+/* Etiquetas de producto (ej: favorito, más vendido) */
+.etiqueta {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0.35rem 0.7rem;
+  border-radius: 12px;
+  margin-top: 0.3rem;
+  align-self: flex-start;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Colores para las etiquetas según tipo */
+.etiqueta.favorito {
+  background-color: var(--color-principal);
+  color: #000;
+}
+
+.etiqueta.mas-vendido {
+  background-color: #ff5733;
+  color: white;
+}
+
+/* === SECCIÓN: INPUT DE BUSQUEDA === */
+/* Buscador elegante con animaciones al enfocar */
+.buscador {
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 320px;
+  margin: 20px auto;
+  display: block;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+/* Efecto de enfoque (focus) para buscador */
+.buscador:focus {
+  outline: none;
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 3px rgba(246, 183, 60, 0.3);
+}
+
+/* === SECCIÓN: BOTÓN "VOLVER ARRIBA" === */
+/* Botón flotante para volver al inicio de la página */
+.volver-arriba {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #66bb6a, #4caf50);
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* Hover del botón de volver arriba */
+.volver-arriba:hover {
+  background: linear-gradient(135deg, #57a85a, #3e8e41);
+  transform: scale(1.05);
+}
+
+/* === SECCIÓN: PRODUCT SLIDE GENERAL (CAROUSEL) === */
+.product-slide {
+  transition: transform 0.3s ease;
+}
+
+.product-slide:hover {
+  transform: scale(1.05);
+}
+.sucursales-section {
+  padding: 3rem 1rem;
+  background: linear-gradient(160deg, #f0f0f0 0%, #ffffff 100%);
+}
+
+.filtro-ciudad {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.filtro-btn {
+  background: white;
+  color: var(--color-principal);
+  border: 2px solid var(--color-principal);
+  padding: 0.5rem 1.2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filtro-btn:hover,
+.filtro-btn.activo {
+  background: var(--color-principal);
+  color: white;
+}
+
+.sucursales-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.sucursal-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+
+.sucursal-card iframe {
+  width: 100%;
+  height: 200px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.sucursal-card h3 {
+  color: var(--color-principal);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .sucursal-card iframe {
+    height: 180px;
+  }
+}
+.footer-elegante {
+  background-color: #222;
+  color: #eee;
+  text-align: center;
+  padding: 0.8rem 1rem;
+  font-size: 0.85rem;
+}
+
+.footer-elegante p {
+  margin: 0.2rem 0;
+  line-height: 1.23;
+}
+
+.footer-elegante .corazon {
+  color: #f87171;
+}
+
+.footer-elegante .credit-link {
+  color: var(--color-principal);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.footer-elegante .credit-link:hover {
+  color: #fff7e6;
+}
+.trabaja-seccion {
+  padding-top: 2rem;
+}
+
+.formulario-trabajo {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  max-width: 700px;
+  margin: 2rem auto;
+}
+
+.form-grid {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.formulario-trabajo input,
+.formulario-trabajo textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  transition: border 0.3s ease;
+}
+
+.formulario-trabajo input:focus,
+.formulario-trabajo textarea:focus {
+  border-color: var(--color-principal);
+  outline: none;
+}
+
+.formulario-trabajo textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.input-file {
+  background-color: #f7f7f7;
+  padding: 0.9rem 1rem;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 500;
+  color: #333;
+  position: relative;
+}
+
+.input-file input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.boton-enviar {
+  background-color: var(--color-principal);
+  color: white;
+  border: none;
+  padding: 0.9rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+
+.boton-enviar:hover {
+  background-color: var(--color-principal);
+}
+
+.estado-formulario {
+  margin-top: 1rem;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+  .formulario-trabajo {
+    padding: 1.6rem;
+  }
+
+  .form-grid {
+    gap: 1rem;
+  }
+}
+/* === Casilla de aceptación de políticas === */
+.aceptacion-politicas {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.4;
+  margin-top: 1rem;
+}
+
+.aceptacion-politicas input[type="checkbox"] {
+  margin-top: 3px;
+  accent-color: var(--color-principal); /* color del check */
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.aceptacion-politicas a {
+  color: var(--color-principal);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.aceptacion-politicas a:hover {
+  color: var(--color-principal);
+}
+/* === AJUSTE VISUAL DEL CARRUSEL DE PRODUCTOS === */
+.product-carousel-track {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch; /* Alinea todas las tarjetas a la misma altura */
+}
+
+.product-slide {
+  flex: 0 0 220px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+}
+
+.product-slide:hover {
+  transform: translateY(-4px);
+}
+
+.product-slide img {
+  width: 100%;
+  height: 180px;               /* Tamaño visual uniforme */
+  object-fit: cover;           /* Recorta sin deformar */
+  object-position: center;     /* Centra el foco */
+  border-bottom: 3px solid var(--color-principal);
+  display: block;
+}
+
+/* Imagenes con mucho fondo blanco (como el cono) */
+.product-slide img.is-cutout {
+  object-fit: contain;
+  background: #fff;
+  padding: 8px;
+}
+
+.product-slide-title {
+  background: var(--color-principal);
+  color: white;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.7rem;
+  letter-spacing: 0.5px;
+}
+
+/* En pantallas pequeñas el formato se adapta */
+@media (max-width: 768px) {
+  .product-slide {
+    flex: 0 0 160px;
+  }
+
+  .product-slide img {
+    height: 150px;
+  }
+}
